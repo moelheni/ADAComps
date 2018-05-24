@@ -15,6 +15,7 @@ import { Separator } from './Utils'
 import Alert from './Alert'
 import SearchInput from './SearchInput'
 import PictureSelector from './PictureSelector'
+import SelectList from './SelectList'
 
 class App extends Component {
   constructor (props) {
@@ -35,6 +36,14 @@ class App extends Component {
             </List>} />
           </div>
         </Navbar>
+
+        <div style={{margin: '100px 20px 30px 20px', width: '400px'}}>
+          <SelectList onChange={(e) => console.log(e)}>
+            <h1>Mokhles</h1>
+            <h1>Ahmed</h1>
+            <h1>Oussema</h1>
+          </SelectList>
+        </div>
 
         <div style={{margin: '100px 20px 30px 20px'}}>
           <Button onClick={() => this.setState({showPopup: !this.state.showPopup})}>Show Alert</Button>
