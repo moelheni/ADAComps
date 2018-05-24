@@ -57,7 +57,13 @@ class App extends Component {
           <SearchInput filled onSearch={(e) => console.log(e)} placeholder='Search for another' />
         </div>
 
-        <Alert closeFunction={() => this.setState({showPopup: !this.state.showPopup})} onConfirm={() => this.setState({showPopup: !this.state.showPopup})} showen={this.state.showPopup} kind='success' title='Good' message='Everything is ok' />
+        <Alert
+          onClose={() => this.setState({showPopup: !this.state.showPopup})}
+          onConfirm={() => this.setState({showPopup: !this.state.showPopup})}
+          isVisible={this.state.showPopup}
+          kind='success'
+          title='Good'
+          message='Everything is ok' />
 
         <TitledCard
           width='300px'
