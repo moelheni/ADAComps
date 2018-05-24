@@ -1,76 +1,86 @@
 import React from 'react'
+import styled, {css} from 'styled-components'
 
 import {Separator} from './Utils'
 import Button from './Button'
 
+const AlertContainer = styled.div`
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  opacity: 0;
+  ${props => props.isVisible && css`
+    z-index: 99999;
+    opacity: 1;
+  `}
+`
+const AlertBox = styled.div`
+  width: 300px;
+  background: linear-gradient(to right, #4675aa 0%,#385b96 100%);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  transition: all 0.5s ease;
+  opacity: 0;
+  margin-top: 200px
+  ${props => props.isVisible && css`
+    opacity: 1;
+    margin-top: 0;
+  `}
+`
+const AlertIcon = styled.div`
+  font-size: 2em;
+  margin-top: 30px;
+`
+const AlertButton = styled.div`
+  display: flex;
+  justifyContent: ;flex-end;
+  width: 100%;
+  marginTop: 30px;
+`
+
 class Alert extends React.Component {
   render () {
-    let {kind, title, message, onConfirm, closeFunction, showen} = this.props
-    return <div style={{
-      ...styles.AlertContainer,
-      opacity: showen ? '1' : '0',
-      zIndex: showen ? '99999' : '-1'
-    }} onClick={closeFunction}>
-      <div style={{
-        ...styles.Alert,
-        opacity: showen ? '1' : '0',
-        marginTop: showen ? 0 : '200px'
-      }} onClick={(e) => e.stopPropagation()}>
-        <div style={styles.AlertIcon}>
+    const {
+      children,
+      isVisible,
+      kind,
+      message,
+      title,
+      onClose,
+      onConfirm
+    } = this.props
+    return <AlertContainer isVisible={isVisible} onClick={onClose}>
+      <AlertBox isVisible={isVisible} onClick={(e) => e.stopPropagation()}>
+        <AlertIcon>
           {
             kind === 'success' && <i className='far fa-check-square' />
           }
-        </div>
-        <div style={styles.AlertTitle}>
+        </AlertIcon>
+        <div>
           <h1>{title}</h1>
         </div>
         <Separator color='white' />
-        <div style={styles.AlertMessage}>
+        <div>
           {
-            message
+            message || children
           }
         </div>
-        <div style={styles.AlertButton}>
+        <AlertButton>
           <Button lightColor onClick={onConfirm}>Confirm</Button>
-        </div>
-      </div>
-    </div>
-  }
-}
-
-const styles = {
-  AlertContainer: {
-    position: 'fixed',
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: '100%',
-    left: 0,
-    top: 0,
-    zIndex: 10
-  },
-  Alert: {
-    width: '300px',
-    background: 'linear-gradient(to right, #4675aa 0%,#385b96 100%)',
-    color: 'white',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    padding: '20px',
-    transition: 'all 0.5s ease'
-  },
-  AlertIcon: {
-    fontSize: '2em',
-    marginTop: '30px'
-  },
-  AlertButton: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    width: '100%',
-    marginTop: '30px'
+        </AlertButton>
+      </AlertBox>
+    </AlertContainer>
   }
 }
 
