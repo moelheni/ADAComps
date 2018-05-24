@@ -14,6 +14,7 @@ import { Input, Textarea, Checkbox } from './Inputs'
 import { Separator } from './Utils'
 import Alert from './Alert'
 import SearchInput from './SearchInput'
+import PictureSelector from './PictureSelector'
 
 class App extends Component {
   constructor (props) {
@@ -101,8 +102,9 @@ class App extends Component {
           menu={() => <h1>menu</h1>} />
 
         <FormCard>
-          <Form onSubmit={(e) => window.alert('Submit works')}>
+          <Form onSubmit={(e) => window.alert('Submit works')} alignCenter>
             <h1>Signup</h1>
+            <PictureSelector />
             <Input placeholder='ok' />
             <Input placeholder='ok' />
             <Input placeholder='ok' />

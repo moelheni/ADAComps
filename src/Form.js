@@ -2,8 +2,8 @@ import React from 'react'
 
 class Form extends React.Component {
   render () {
-    let { children } = this.props
-    return <div style={styles.Form}>
+    let { children, alignCenter } = this.props
+    return <div style={alignCenter ? { ...styles.Form, textAlign: 'center' } : styles.Form}>
       <form {...this.props}>
         {
             React.Children.map(children, (child, i) => (
