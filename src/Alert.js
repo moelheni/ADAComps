@@ -46,7 +46,8 @@ const AlertButton = styled.div`
   display: flex;
   justifyContent: ;flex-end;
   width: 100%;
-  marginTop: 30px;
+  margin-top: 30px;
+  justify-content: flex-end;
 `
 
 class Alert extends React.Component {
