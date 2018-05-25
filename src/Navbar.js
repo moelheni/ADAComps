@@ -38,6 +38,9 @@ const styles = {
       fontSize: '1.4em',
       color: '#2a7bdb',
       fontWeight: 'bold'
+    },
+    RightSection: {
+      color: 'black'
     }
   }
 }

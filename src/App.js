@@ -16,13 +16,15 @@ import Alert from './Alert'
 import SearchInput from './SearchInput'
 import PictureSelector from './PictureSelector'
 import SelectList from './SelectList'
+import SidebarMenu from './SidebarMenu'
 
 class App extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      showPopup: false
+      showPopup: false,
+      showSidebar: false
     }
   }
   render () {
@@ -34,8 +36,22 @@ class App extends Component {
               <TitleAndSub title='Mokhles' subTitle='Student' />
               <div>ahmed</div>
             </List>} />
+            <a onClick={() => this.setState({showSidebar: true})}>Sidebar Menu</a>
           </div>
         </Navbar>
+
+        <SidebarMenu isVisible={this.state.showSidebar} onClose={() => this.setState({showSidebar: false})}>
+          <div style={{marginTop: '10px'}}>
+            <UserCard picture='http://www.businessnews.com.tn/images/album/BN36170yahya-bouhlel.jpg'>
+              <TitleAndSub title='Mokhles' subTitle='Student' />
+            </UserCard>
+          </div>
+          <SelectList onChange={(e) => console.log(e)}>
+            <h1>Mokhles</h1>
+            <h1>Ahmed</h1>
+            <h1>Oussema</h1>
+          </SelectList>
+        </SidebarMenu>
 
         <div style={{margin: '100px 20px 30px 20px', width: '400px'}}>
           <SelectList onChange={(e) => console.log(e)}>
